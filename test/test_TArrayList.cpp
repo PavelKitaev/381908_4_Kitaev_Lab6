@@ -9,7 +9,7 @@ TEST(TArrayList, can_create_Arraylist) //Создание листа
 TEST(TArrayList, can_create_Arraylist_Iterator) //Создание итератора
 {
   TArrayList<int> temp(10);
-  ASSERT_NO_THROW(TArrayListIterator<int> i = temp.Begin());
+  ASSERT_NO_THROW(TArrayListIterator<int> i(temp));
 }
 
 TEST(TArrayList, can_copy_Arraylist) //Копирования листа
@@ -21,7 +21,7 @@ TEST(TArrayList, can_copy_Arraylist) //Копирования листа
 TEST(TArrayList, can_copy_Arraylist_Iterator) //Копирование итератора
 {
   TArrayList<int> temp(10);
-  TArrayListIterator<int> i = temp.Begin();
+  TArrayListIterator<int> i(temp);
   ASSERT_NO_THROW(TArrayListIterator<int> j = i);
 }
 
@@ -123,20 +123,16 @@ TEST(TArrayList, can_get_count)
 
 TEST(TArrayList, can_GetData_iterator)
 {
-  TArrayList<char> temp(10);
+  TArrayList<char> temp(1);
   temp.InsFirst('a');
-  temp.InsLast('b');
-  temp.InsFirst('c');
-  TArrayListIterator<char> i = temp.Begin();
+  TArrayListIterator<char> i(temp, 1);
   ASSERT_NO_THROW(i.GetData());
 }
 
 TEST(TArrayList, can_GetIndex_iterator)
 {
-  TArrayList<char> temp(10);
+  TArrayList<char> temp(1);
   temp.InsFirst('a');
-  temp.InsLast('b');
-  temp.InsFirst('c');
-  TArrayListIterator<char> i = temp.Begin();
+  TArrayListIterator<char> i(temp, 1);
   ASSERT_NO_THROW(i.GetIndex());
 }

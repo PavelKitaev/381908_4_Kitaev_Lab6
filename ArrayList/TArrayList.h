@@ -30,7 +30,7 @@ public:
   bool IsFull(void) const; // контроль пустоты
   bool IsEmpty(void) const; // контроль пустоты
 
-  TArrayListIterator<T> Begin();
+  TArrayListIterator<T> Begin() ;
   TArrayListIterator<T> End();
 
   void DelFirst();
