@@ -8,7 +8,7 @@ int main()
   temp.InsLast('b');
   temp.InsFirst('c');
 
-  TArrayListIterator<char> i = temp.Begin();
+  TArrayListIterator<char> &i = temp.Begin();
   while (i.IsGoNext())
   {
     cout << i.GetData();
