@@ -391,7 +391,7 @@ inline int TArrayList<T>::GetCount()
 template<class T>
 inline TArrayListIterator<T> TArrayList<T>::Begin()
 {
-  return TArrayListIterator<T>(*this, root);
+  return TArrayListIterator<T>(*this, this->root);
 }
 
 template<class T>
