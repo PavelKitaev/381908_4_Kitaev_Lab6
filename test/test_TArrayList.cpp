@@ -136,3 +136,20 @@ TEST(TArrayList, can_GetIndex_iterator)
   TArrayListIterator<char> i(temp, 1);
   ASSERT_NO_THROW(i.GetIndex());
 }
+
+TEST(TArrayList, DOP_test_file_write_DOP)
+{
+  TArrayList<char> temp(3);
+  temp.InsFirst('a');
+  temp.InsFirst('b');
+  temp.InsFirst('c');
+  ASSERT_NO_THROW(temp.file());
+}
+
+TEST(TArrayList, DOP_test_divide_without_residue_DOP)
+{
+  TArrayList<int> temp(2);
+  temp.InsFirst(10);
+  temp.InsFirst(25);
+  ASSERT_NO_THROW(temp.Divide(2));
+}

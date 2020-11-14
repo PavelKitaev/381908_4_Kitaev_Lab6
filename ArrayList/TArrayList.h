@@ -2,7 +2,7 @@
 #define _ARRAY_LIST_
 
 #include <iostream>
-
+#include <fstream>
 using namespace std;
 
 template <class T1>
@@ -42,6 +42,11 @@ public:
   void Del(TArrayListIterator<T>& e);
   int GetCount();
 
+
+  //DOP
+  void file();
+  TArrayList<T> Divide(int _k);
+
   template <class T1>
   friend ostream& operator<< (ostream& ostr, const TArrayList<T1> &A);
   template <class T1>
@@ -80,7 +85,7 @@ ostream& operator<< (ostream& ostr, const TArrayList<T1> &A)
   int i = A.root;
   while (A.links[i] != -1)
   {
-    ostr << A.data[i];
+    ostr << A.data[i] << " ";
     i = A.links[i];
   }
   return ostr;
@@ -386,6 +391,38 @@ inline int TArrayList<T>::GetCount()
 {
   return count;
 }
+template<class T>
+inline void TArrayList<T>::file()
+{
+  ofstream outf("Data.txt");
+  if (!outf)
+  {
+    throw "Error file";
+  }
+
+  for (int i = 0; i < this->size; i++)
+  {
+    outf << this->data[i] << " ";
+  }
+}
+
+template <class T>
+TArrayList<T> TArrayList<T>::Divide(int _k)
+{
+  int size_temp = this->size;
+  TArrayList<T> temp(size_temp);
+
+  for (int i = 0; i < this->size; i++)
+  {
+    if (this->data[i] % _k == 0)
+    {
+      temp.InsFirst(this->data[i]);
+    }
+  }
+  return temp;
+}
+
+
 #endif
 
 template<class T>
