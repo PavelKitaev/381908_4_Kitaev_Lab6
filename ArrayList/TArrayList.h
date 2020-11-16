@@ -30,8 +30,8 @@ public:
   bool IsFull(void) const; // контроль пустоты
   bool IsEmpty(void) const; // контроль пустоты
 
-  TArrayListIterator<T> Begin() ;
-  TArrayListIterator<T> End();
+  TArrayListIterator<T> begin() ;
+  TArrayListIterator<T> end();
 
   void DelFirst();
   void DelLast();
@@ -71,8 +71,12 @@ public:
   void GoNext();
  
   bool operator == (const TArrayListIterator<T>& _v);
+  bool operator != (const TArrayListIterator<T>& _v);
   TArrayListIterator<T>& operator ++ ();
   TArrayListIterator<T>& operator =(const TArrayListIterator<T>& _v);
+
+  T& operator *();
+  T& operator *(int);
 
   T GetData();
   T GetIndex();
@@ -426,13 +430,13 @@ TArrayList<T> TArrayList<T>::Divide(int _k)
 #endif
 
 template<class T>
-inline TArrayListIterator<T> TArrayList<T>::Begin()
+inline TArrayListIterator<T> TArrayList<T>::begin()
 {
   return TArrayListIterator<T>(*this, this->root);
 }
 
 template<class T>
-inline TArrayListIterator<T> TArrayList<T>::End()
+inline TArrayListIterator<T> TArrayList<T>::end()
 {
   return TArrayListIterator<T>(*this, -1);
 }
@@ -473,7 +477,13 @@ inline void TArrayListIterator<T>::GoNext()
 template<class T>
 inline bool TArrayListIterator<T>::operator==(const TArrayListIterator<T>& _v)
 {
-  return (index == _v.index && *list == *(_v.list));
+  return index == _v.index;
+}
+
+template<class T>
+inline bool TArrayListIterator<T>::operator!=(const TArrayListIterator<T>& _v)
+{
+  return !this->operator==(_v);
 }
 
 template<class T>
@@ -488,6 +498,18 @@ inline TArrayListIterator<T>& TArrayListIterator<T>::operator=(const TArrayListI
 {
   list = _v.list;
   index = _v.index;
+}
+
+template<class T>
+inline T& TArrayListIterator<T>::operator*()
+{
+  return list.data[index];
+}
+
+template<class T>
+inline T& TArrayListIterator<T>::operator*(int)
+{
+  return list.data[index];
 }
 
 template<class T>
